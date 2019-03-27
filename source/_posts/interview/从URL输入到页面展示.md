@@ -12,9 +12,9 @@ comments: true
 
 打开浏览器输入 url 的过程中，背后到底发生了哪些事情？从下面两张图来开始说。
 
-![HTTP请求图](http://ww1.sinaimg.cn/large/b3ad6cffly1g16qec1mmpj20m00fijrs.jpg)
+![HTTP请求图](https://ww1.sinaimg.cn/large/b3ad6cffly1g16qec1mmpj20m00fijrs.jpg)
 
-![HTTP请求详细图](http://ww1.sinaimg.cn/large/b3ad6cffly1g16qetejlfj20yg0c8dgr.jpg)
+![HTTP请求详细图](https://ww1.sinaimg.cn/large/b3ad6cffly1g16qetejlfj20yg0c8dgr.jpg)
 
 可以分为如下几个过程：
 
@@ -56,18 +56,18 @@ filename - 定义文档/资源的名称
    - ISP 的 DNS 服务器: ISP 指互联网服务提供商(Internet Service Provider)的简称，ISP 有专门的 DNS 服务器应对 DNS 查询请求。
    - 根服务器: 递归查询。
 
-![DNS查询](http://ww1.sinaimg.cn/large/b3ad6cffly1g16rm4k05mj20qb0ezwg3.jpg)
+![DNS查询](https://ww1.sinaimg.cn/large/b3ad6cffly1g16rm4k05mj20qb0ezwg3.jpg)
 
 4. 小结
    浏览器通过向 DNS 服务器发送域名，DNS 服务器查询到与域名相对应的 IP 地址，然后返回给浏览器，浏览器再将 IP 地址打在协议上，同时请求参数也会在协议搭载，然后一并发送给对应的服务器。
 
-![小结](http://ww1.sinaimg.cn/large/b3ad6cffly1g16rsgky05j20i00bwmy1.jpg)
+![小结](https://ww1.sinaimg.cn/large/b3ad6cffly1g16rsgky05j20i00bwmy1.jpg)
 
 ## 三、TCP 三次握手
 
 在客户端发送数据之前会发起 TCP 三次握手用以同步客户端和服务端的序列号和确认号，并交换 TCP 窗口大小信息。
 
-![TCP三次握手](http://ww1.sinaimg.cn/large/b3ad6cffly1g16rur33ilj20mf0i7gma.jpg)
+![TCP三次握手](https://ww1.sinaimg.cn/large/b3ad6cffly1g16rur33ilj20mf0i7gma.jpg)
 
 1. TCP 三次握手的过程如下:
 
@@ -84,7 +84,7 @@ filename - 定义文档/资源的名称
 
    请求报文由请求行(request line)、请求头(header)、 请求体四个部分组成，如图所示:
 
-![HTTP请求](http://ww1.sinaimg.cn/large/b3ad6cffly1g16sthv6hdj20h406rwf7.jpg)
+![HTTP请求](https://ww1.sinaimg.cn/large/b3ad6cffly1g16sthv6hdj20h406rwf7.jpg)
 
 - 请求行包含请求方法、URL、协议版本
   - 请求方法包含: GET、POST、PUT、DELETE、PATCH、HEAD、OPTIONS、TRACE。
@@ -115,7 +115,7 @@ filename - 定义文档/资源的名称
 
    web server 担任管控的角色，对于不同用户发送的请求，会结合配置文件，把不同请求委托给服务器上处理相应请求的程序进行处理(例如 CGL 脚本，JSP 脚本，servlets，ASP 脚本，服务端 JavaScript，或者一些其它的服务器端技术等)，然后返回后台程序处理产生的结果作为响应。
 
-![服务器与客户端的区别](http://ww1.sinaimg.cn/large/b3ad6cffly1g16z4ewah3j20oe0aaq5j.jpg)
+![服务器与客户端的区别](https://ww1.sinaimg.cn/large/b3ad6cffly1g16z4ewah3j20oe0aaq5j.jpg)
 
 2. MVC 后台处理阶段
 
@@ -123,7 +123,7 @@ filename - 定义文档/资源的名称
 
    MVC 是一个设计模式，将应用程序分成三个核心部件: 模型（model）- 视图（view）- 控制器（controller），它们各自处理自己的任务，实现输入、处理和输出的分离。
 
-![MVC设计模式](http://ww1.sinaimg.cn/large/b3ad6cffly1g16z864tr1j20el0f3750.jpg)
+![MVC设计模式](https://ww1.sinaimg.cn/large/b3ad6cffly1g16z864tr1j20el0f3750.jpg)
 
 - 视图（view）
   **它是提供给用户的操作界面，是程序的外壳。**
@@ -138,7 +138,7 @@ filename - 定义文档/资源的名称
 
    响应报文由响应行（response line）、响应头部（header）、响应主体三个部分组成。如下图所示：
 
-![响应报文](http://ww1.sinaimg.cn/large/b3ad6cffly1g16zk73a42j20bb080mxm.jpg)
+![响应报文](https://ww1.sinaimg.cn/large/b3ad6cffly1g16zk73a42j20bb080mxm.jpg)
 
 - 响应行包含: 协议版本、状态码
   状态码规则如下：
@@ -154,7 +154,7 @@ filename - 定义文档/资源的名称
 
 浏览器拿到响应文本 HTML 后，接下来介绍下浏览器渲染机制
 
-![浏览器响应机制](http://ww1.sinaimg.cn/large/b3ad6cffly1g16zqnnv5cj20kw076aab.jpg)
+![浏览器响应机制](https://ww1.sinaimg.cn/large/b3ad6cffly1g16zqnnv5cj20kw076aab.jpg)
 
 浏览器解析渲染页面分为五个步骤：
 
@@ -185,7 +185,7 @@ filename - 定义文档/资源的名称
 
 当数据传送完毕，需要断开 TCP 连接，此时发起 TCP 四次挥手。
 
-![TCP四次挥手](http://ww1.sinaimg.cn/large/b3ad6cffly1g1706quw5ej20i40cit9m.jpg)
+![TCP四次挥手](https://ww1.sinaimg.cn/large/b3ad6cffly1g1706quw5ej20i40cit9m.jpg)
 
 - **发起方向被动方发送报文，Fin、Ack、Seq，表示已经没有数据传输了。并进入 FIN_WAIT_1 状态。**（第一次挥手由浏览器发起的，发送给服务器，我请求报文发送完了，你准备关闭吧）
 - **被动方发送报文，Ack、Seq，表示同意关闭请求。此时主机发起方进入 FIN_WAIT_2 状态。**(第二次挥手由服务器发起的，告诉浏览器，我请求报文接受完了，我准备关闭了，你也准备吧)
