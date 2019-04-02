@@ -599,9 +599,149 @@ for (;;) {
 
 ### `do...while` 循环
 
+`do...while` 循环与 `while` 循环类似，唯一的区别就是先运行一次循环体，然后判断循环条件。
+
+```text
+do
+  语句
+while (条件);
+
+// 或者
+do {
+  语句
+} while (条件);
+```
+
+不管条件是否为真，`do...while` 循环至少运行一次，这是这种结构最大的特点。另外，`while` 语句后面的分号注意不要省略。
+
+下面是一个例子。
+
+```javascript
+var x = 3;
+var i = 0;
+
+do {
+  console.log(i);
+  i++;
+} while (i < x);
+```
+
 ### `break` 语句和 `continue` 语句
 
+`break` 语句和 `continue` 语句都具有跳转作用，可以让代码不按既有的顺序执行。
+
+`break` 语句用于跳出代码块或循环。
+
+```javascript
+var i = 0;
+
+while (i < 100) {
+  console.log('i当前为：' + i);
+  i++;
+  if (i == 10) break;
+}
+```
+
+上面的代码只会执行 10 次循环，一旦 `i` 等于 10，就会跳出循环。
+
+`for` 循环也可以使用 `break` 语句跳出循环。
+
+```javascript
+for (var i = 0; i < 5; i++) {
+  console.log(i);
+  if (i === 3) {
+    break;
+  }
+}
+
+// 0
+// 1
+// 2
+// 3
+```
+
+上面代码执行到 `i` 等于 3，就会跳出循环。
+
+`continue` 语句用于立即终止本轮循环，返回循环结构的头部，开始下一轮循环。
+
+```javascript
+var i = 0;
+while (i < 100) {
+  i++;
+  if (i % 2 === 0) continue;
+  console.log('i 当前为：' + i);
+}
+```
+
+上面代码只有在 `i` 为奇数时，才会输出 `i` 的值。如果 `i` 为偶数，则直接进入下一轮循环。如果存在多重循环，不带参数的 `break` 语句和 `continue` 语句都只针对最内层循环。
+
 ### 标签(label)
+
+Javascript 语言允许，语句的前面有标签(label)，相当于定位符，用于跳转到程序的任意位置，标签的格式如下。
+
+```text
+label:
+  语句
+```
+
+标签可以是任意的标识符，但不能是保留字，语句部分可以是任意语句。
+
+标签通常与 `break` 语句和 `continue` 语句配合使用，跳出特定的循环。
+
+```javascript
+top: for (var i = 0; i < 3; i++) {
+  for (var j = 0; j < 3; j++) {
+    if (i === 1 && j === 1) {
+      break top;
+      console.log('i=' + i + ', j=' + j);
+    }
+  }
+}
+
+// i=0 j=0
+// i=0 j=1
+// i=0 j=2
+// i=1 j=0
+```
+
+上面代码为一个双重循环区块，`break` 命令后面加上了 `top` 标签(注意，`top` 不用加引号)，满足条件时，直接跳出双层循环。如果 `break` 语句后面不使用标签，则只能跳出内层循环，进入下一次的外层循环。
+
+标签也可以用于跳出代码块。
+
+```javascript
+foo: {
+  console.log(1);
+  break foo;
+  console.log('本行不会输出');
+}
+console.log(2);
+
+// 1
+// 2
+```
+
+上面代码执行到 `break foo`，就会跳出区块。
+
+`continue` 语句也可以与标签配合使用。
+
+```javascript
+top: for (var i = 0; i < 3; i++) {
+  for (var j = 0; j < 3; j++) {
+    if (i === 1 && j === 1) continue top;
+    console.log('i=' + i + ', j=' + j);
+  }
+}
+
+// i=0 j=0
+// i=0 j=1
+// i=0 j=2
+// i=1 j=0
+// i=2 j=0
+// i=2 j=1
+// i=2 j=2
+```
+
+上面代码中，`continue` 命令后面有一个标签名，满足条件时，会跳过当前循环，直接进入下一轮外层循环。如果 `continue` 语句后面不使用标签，则只能进入下一轮的内层循环。
 
 ## 关于本文档的来历
 
