@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="this、call 和 applythisjavascript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用  作">
+<meta name="description" content="thisjavascript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用">
 <meta name="keywords" content="this call apply">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript this call apply">
+<meta property="og:title" content="JavaScript 中的 this、call 和 apply">
 <meta property="og:url" content="https://daziweb.github.io/2019/05/09/javascript/this、call和apply/index.html">
 <meta property="og:site_name" content="Dazi-World">
-<meta property="og:description" content="this、call 和 applythisjavascript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用  作">
+<meta property="og:description" content="thisjavascript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-10T00:58:04.711Z">
+<meta property="og:updated_time" content="2019-05-10T01:05:40.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript this call apply">
-<meta name="twitter:description" content="this、call 和 applythisjavascript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用  作">
+<meta name="twitter:title" content="JavaScript 中的 this、call 和 apply">
+<meta name="twitter:description" content="thisjavascript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用">
 
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <title>javascript this call apply | Dazi-World</title>
+  <title>JavaScript 中的 this、call 和 apply | Dazi-World</title>
   
 
 
@@ -304,7 +304,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">javascript this call apply</h2>
+          <h2 class="post-title" itemprop="name headline">JavaScript 中的 this、call 和 apply</h2>
         
 
         <div class="post-meta">
@@ -366,7 +366,7 @@
 
           
           
-             <span id="/2019/05/09/javascript/this、call和apply/" class="leancloud_visitors" data-flag-title="javascript this call apply">
+             <span id="/2019/05/09/javascript/this、call和apply/" class="leancloud_visitors" data-flag-title="JavaScript 中的 this、call 和 apply">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  488
+                  485
                 </span>
               
 
@@ -428,7 +428,7 @@
       
 
       
-        <h1 id="this、call-和-apply"><a href="#this、call-和-apply" class="headerlink" title="this、call 和 apply"></a>this、call 和 apply</h1><h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>javascript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。</p>
+        <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>javascript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。</p>
 <h3 id="this-的指向"><a href="#this-的指向" class="headerlink" title="this 的指向"></a>this 的指向</h3><p>this 的指向大致可以分为以下 4 种。</p>
 <ul>
 <li>作为对象的方法调用</li>
@@ -436,6 +436,7 @@
 <li>构造器调用</li>
 <li>Function.prototype.call 或 Function.prototype.apply 调用</li>
 </ul>
+<a id="more"></a>
 <h4 id="作为对象的方法调用"><a href="#作为对象的方法调用" class="headerlink" title="作为对象的方法调用"></a>作为对象的方法调用</h4><p>当函数作为对象的方法被调用时，this 指向该对象。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  getA: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span> === obj); <span class="comment">// 输出 true</span></span><br><span class="line">    alert(<span class="keyword">this</span>.a); <span class="comment">// 输出 1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
 <h4 id="作为普通函数调用"><a href="#作为普通函数调用" class="headerlink" title="作为普通函数调用"></a>作为普通函数调用</h4><p>当函数不作为对象的属性被调用时，也就是我们常说的普通函数方式，此时的 <code>this</code> 总是指向全局对象。在浏览器的 javascript 里，这个全局对象是 window 对象。</p>
@@ -488,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/09/boostnote/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/04/17/mongodb/mongodb 常用语法教程/" rel="next" title="mongodb 常用语法教程">
+                <i class="fa fa-chevron-left"></i> mongodb 常用语法教程
               </a>
             
           </div>
@@ -578,7 +579,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -640,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#this、call-和-apply"><span class="nav-number">1.</span> <span class="nav-text">this、call 和 apply</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">1.1.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this-的指向"><span class="nav-number">1.1.1.</span> <span class="nav-text">this 的指向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为对象的方法调用"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">作为对象的方法调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为普通函数调用"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">作为普通函数调用</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">1.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this-的指向"><span class="nav-number">1.1.</span> <span class="nav-text">this 的指向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为对象的方法调用"><span class="nav-number">1.1.1.</span> <span class="nav-text">作为对象的方法调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为普通函数调用"><span class="nav-number">1.1.2.</span> <span class="nav-text">作为普通函数调用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
