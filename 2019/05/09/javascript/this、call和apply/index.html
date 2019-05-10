@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Dazi-World">
 <meta property="og:description" content="thisJavaScript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-10T05:42:08.148Z">
+<meta property="og:updated_time" content="2019-05-10T09:08:57.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 中的 this、call 和 apply">
 <meta name="twitter:description" content="thisJavaScript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用">
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  2.1k
                 </span>
               
 
@@ -407,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  8
                 </span>
               
             </div>
@@ -471,6 +471,21 @@
 <p>但当用 <code>getId</code> 来引用 <code>document.getElementById</code> 之后，再调用 <code>getId</code>，此时就成了普通函数调用，函数内部的 this 指向了 window，而不是原来的 document。</p>
 <p>我们可以尝试利用 apply 把 document 当作 this 传入 <code>getId</code> 函数，帮助”修正” this :</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getELementById = (<span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> func.apply(<span class="built_in">document</span>, <span class="built_in">arguments</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)(<span class="built_in">document</span>.getElementById);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getId = <span class="built_in">document</span>.getElementById;</span><br><span class="line"><span class="keyword">var</span> div = getId(<span class="string">'div1'</span>);</span><br><span class="line"></span><br><span class="line">alert(div.id); <span class="comment">// div1</span></span><br></pre></td></tr></table></figure>
+<h2 id="call-和-apply"><a href="#call-和-apply" class="headerlink" title="call 和 apply"></a>call 和 apply</h2><p>ECMAScript 3 给 Function 的原型定义了两个方法，它们是 Function.prototype.call 和 Function.prototype.apply。在实际开发中，特别是在一些函数式风格的代码编写中，call 和 apply 方法尤为有用。在 JavaScript 版本的设计模式中，这两个方法的应用也非常广泛，能熟练运用这两个方法，是我们真正成为一句 JavaScript 程序员的重要一步。</p>
+<h3 id="call-和-apply-的区别"><a href="#call-和-apply-的区别" class="headerlink" title="call 和 apply 的区别"></a>call 和 apply 的区别</h3><p>Function.prototype.call 和 Function.prototype.apply 都是非常常用的方法。它们的作用是一样的，区别仅在于传入参数形式的不同。</p>
+<p>apply 接受两个参数，第一个参数指定了函数体内 this 对象的指向，第二个参数为一个带下标的集合，这个集合可以为数组，也可以为类数组，apply 方法把这个集合中的元素作为参数传递给被调用的函数:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">  alert([a, b, c]); <span class="comment">// [1, 2, 3]</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br></pre></td></tr></table></figure>
+<p>在这段代码中，参数 1，2，3 被放在数组中一起传入 func 函数，它们分别对应 func 参数列表中的 a、b、c。</p>
+<p>call 传入的参数数量不固定，跟 apply 相同的是，第一个参数也是代表函数体内的 this 指向，从第二个参数开始往后，每个参数被依次传入函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">  alert([a, b, c]); <span class="comment">// [1, 2, 3]</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func.call(<span class="literal">null</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>当调用一个函数时，JavaScript 的解释器并不会计较形参和实参在数量、类型以及顺序上的区别，JavaScript 的参数在内部就是用一个数组来表示的。从这个意义上说，apply 比 call 的使用率更高，我们不必关心具体有多少参数被传入函数，只要用 apply 一股脑地推过去就可以了。</p>
+<p>call 是包装在 apply 上面的一颗语法糖，如果我们明确地知道函数接受多少个参数，而且想一目了然地表达形参和实参的对应关系，那么也可以用 call 来传送参数。</p>
+<p>当使用 call 或者 apply 的时候，如果我们传入的第一个参数为 null，函数体内的 this 会指向默认的宿主对象，在浏览器中则是 window :</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">  alert(<span class="keyword">this</span> === <span class="built_in">window</span>); <span class="comment">// 输出 true</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br></pre></td></tr></table></figure>
+<p>但如果是在严格格式下，函数体内的 this 还是为 null :</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line"><span class="meta">  'use strict'</span>;</span><br><span class="line">  alert(<span class="keyword">this</span> === <span class="literal">null</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br></pre></td></tr></table></figure>
+<p>我们有时候使用 call 或者 apply 的目的不在于指定 this 指向，而是另有用途，比如借用其他对象的方法。那么我们可以传入 null 来代替某个具体的对象:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -665,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">1.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this-的指向"><span class="nav-number">1.1.</span> <span class="nav-text">this 的指向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为对象的方法调用"><span class="nav-number">1.1.1.</span> <span class="nav-text">作为对象的方法调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为普通函数调用"><span class="nav-number">1.1.2.</span> <span class="nav-text">作为普通函数调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造器调用"><span class="nav-number">1.1.3.</span> <span class="nav-text">构造器调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Function-prototype-call-或-Function-prototype-apply-调用"><span class="nav-number">1.1.4.</span> <span class="nav-text">Function.prototype.call 或 Function.prototype.apply 调用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#丢失的-this"><span class="nav-number">1.2.</span> <span class="nav-text">丢失的 this</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">1.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this-的指向"><span class="nav-number">1.1.</span> <span class="nav-text">this 的指向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为对象的方法调用"><span class="nav-number">1.1.1.</span> <span class="nav-text">作为对象的方法调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为普通函数调用"><span class="nav-number">1.1.2.</span> <span class="nav-text">作为普通函数调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造器调用"><span class="nav-number">1.1.3.</span> <span class="nav-text">构造器调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Function-prototype-call-或-Function-prototype-apply-调用"><span class="nav-number">1.1.4.</span> <span class="nav-text">Function.prototype.call 或 Function.prototype.apply 调用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#丢失的-this"><span class="nav-number">1.2.</span> <span class="nav-text">丢失的 this</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-和-apply"><span class="nav-number">2.</span> <span class="nav-text">call 和 apply</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call-和-apply-的区别"><span class="nav-number">2.1.</span> <span class="nav-text">call 和 apply 的区别</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -699,7 +714,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">23.7k</span>
+    <span title="Site words total count">24.4k</span>
   
 </div>
 
@@ -713,7 +728,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.7k字</span>
+  <span class="post-count">博客全站共24.4k字</span>
 </div>
         
 
