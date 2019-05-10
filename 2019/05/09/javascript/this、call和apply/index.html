@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Dazi-World">
 <meta property="og:description" content="thisJavaScript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-10T09:08:57.060Z">
+<meta property="og:updated_time" content="2019-05-10T09:12:27.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 中的 this、call 和 apply">
 <meta name="twitter:description" content="thisJavaScript 的 this 指向一个对象，而具体指向哪个对象是在运行时基于函数的执行环境动态绑定的，而非函数被声明时的环境。 this 的指向this 的指向大致可以分为以下 4 种。  作为对象的方法调用 作为普通函数调用 构造器调用 Function.prototype.call 或 Function.prototype.apply 调用">
@@ -485,7 +485,7 @@
 <p>但如果是在严格格式下，函数体内的 this 还是为 null :</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line"><span class="meta">  'use strict'</span>;</span><br><span class="line">  alert(<span class="keyword">this</span> === <span class="literal">null</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br></pre></td></tr></table></figure>
 <p>我们有时候使用 call 或者 apply 的目的不在于指定 this 指向，而是另有用途，比如借用其他对象的方法。那么我们可以传入 null 来代替某个具体的对象:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
