@@ -295,7 +295,7 @@ func.apply(null, [1, 2, 3]);
 ```javascript
 var func = function(a, b, c) {
   'use strict';
-  alert(this === null);
+  alert(this === null); // 输出 true
 };
 
 func.apply(null, [1, 2, 3]);
@@ -304,5 +304,5 @@ func.apply(null, [1, 2, 3]);
 我们有时候使用 call 或者 apply 的目的不在于指定 this 指向，而是另有用途，比如借用其他对象的方法。那么我们可以传入 null 来代替某个具体的对象:
 
 ```javascript
-Math.max.apply(null, [1, 2, 3, 4, 5]);
+Math.max.apply(null, [1, 2, 3, 4, 5]); // 输出 5
 ```
