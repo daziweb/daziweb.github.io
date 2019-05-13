@@ -306,3 +306,185 @@ func.apply(null, [1, 2, 3]);
 ```javascript
 Math.max.apply(null, [1, 2, 3, 4, 5]); // 输出 5
 ```
+
+### call 和 apply 的用途
+
+能够熟练使用 call 和 apply，是我们真正成为一名 JavaScript 程序员的重要一步。
+
+#### 改变 this 指向
+
+call 和 apply 最常见的用途是改变函数内部的 this 指向，我们来看个例子：
+
+```javascript
+var obj1 = {
+  name: 'sevn'
+};
+
+var obj2 = {
+  name: 'lili'
+};
+
+window.name = 'window';
+
+var getName = function() {
+  alert(this.name);
+};
+
+getName(); // 输出 window
+getName.call(obj1); // 输出 sevn
+getName.call(obj2); // 输出 lili
+```
+
+当执行 `getName.call(obj1)` 这句代码时，getName 函数体内的 this 就指向 obj2 对象，所以此处的
+
+```javascript
+var getName = function() {
+  alert(this.name);
+};
+```
+
+实际相当于:
+
+```javascript
+var getName = function() {
+  alert(obj1.name);
+};
+```
+
+在实际开发中，经常会遇到 this 指向被不经意改变的场景，比如有一个 div 节点， div 节点的 onclick 事件中的 this 本来是指向这个 div 的:
+
+```javascript
+document.getElementById('div1').onclick = function() {
+  alert(this.id);
+};
+```
+
+假如该事件函数中有一个内部函数 func，在事件内部调用 func 函数时，func 函数体内的 this 就指向了 window，而不是我们预期的 div，见如下代码:
+
+```javascript
+document.getElementById('div1').onclick = function() {
+  alert(this.id); // 输出 div1
+
+  var func = function() {
+    alert(this.id); // 输出 undefined
+  };
+
+  func();
+};
+```
+
+这时候我们用 call 来修正 func 函数内的 this，使其依然指向 div:
+
+```javascript
+document.getElementById('div1').onclick = function() {
+  var func = function() {
+    alert(this.id); // 输出 div1
+  };
+
+  func.call(this);
+};
+```
+
+使用 call 来修正 this 的场景，我们并非第一次遇到，我们曾经修正过 document.getElementById 函数内部 “丢失” 的 this，代码如下:
+
+```javascript
+document.getElementById = (function(func) {
+  return function() {
+    return func.apply(document, arguments);
+  };
+})(document.getElementById);
+
+var getId = document.getElementById;
+var div = getId('div1');
+alert(div.id); // 输出 div1
+```
+
+### Function.prototype.bind
+
+大部分高级浏览器都实现了内置的 Function.prototype.bind，用来指定函数内部的 this 指向，即使没有原生的 Function.prototype.bind 实现，我们来模拟一个也不是难事，代码如下:
+
+```javascript
+Function.prototype.bind = function(context) {
+  var self = this; // 保存原函数
+  return function() {
+    // 返回一个新的函数
+    return self.apply(context, arguments); // 执行新的函数的时候 会把之前传入的 context 当作新函数体内的 this
+  };
+};
+
+var obj = {
+  name: 'lili'
+};
+
+var func = function() {
+  alert(this.name); // 输出 lili
+}.bind(obj);
+
+func();
+```
+
+我们通过 Function.prototype.bind 来 "包装" func 函数，并且传入一个对象 context 当作参数，这个 context 对象就是我们想修正的 this 对象。
+
+在 Function.prototype.bind 的内部实现中，我们先把 func 函数的引用保存起来，然后返回一个新的函数。当我们在将来执行 func 函数时，实际上先执行的是这个刚刚返回的新函数。在新函数内部，`self.apply(context, arguments)` 这句代码才是执行原来的 func 函数，并且指定 context 对象为 func 函数体内的 this。
+
+这是一个简化版的 Function.prototype.bind 实现，通常我们还会把它实现得稍微复杂一点，使得可以往 func 函数中预先填入一些参数:
+
+```javascript
+Function.prototype.bind = function() {
+  var self = this, // 保存原函数
+    context = [].shift.call(arguments), // 需要绑定的 this 上下文
+    args = [].slice.call(arguments); // 剩余的参数转成数组
+
+  return function() {
+    // 返回一个新的函数
+    return self.apply(context, [].concat.call(args, [].slice.call(arguments)));
+    // 执行新的函数的时候 会把之前传入的 context 当作新函数体内的 this
+    // 并且组合两次分别传入的参数 作为新函数的参数
+  };
+};
+
+var obj = {
+  name: 'lili'
+};
+
+var func = function(a, b, c, d) {
+  alert(this.name); // 输出 lili
+  alert([a, b, c, d]); // 输出 [1, 2, 3, 4]
+}.bind(obj, 1, 2);
+
+func(3, 4);
+```
+
+### 借用其他对象的方法
+
+在 JavaScript 中也存在类似的借用对象。
+
+借用方法的第一种场景是"借用构造函数"，通过这种技术，可以实现一些类似继承的效果:
+
+```javascript
+var A = function(name) {
+  this.name = name;
+};
+
+var B = function() {
+  A.apply(this, arguments);
+};
+
+B.prototype.getName = function() {
+  return this.name;
+};
+
+var b = new B('lili');
+console.log(b.getName()); // 输出 lili
+```
+
+借用方法的第二种运用场景跟我们的关系更加密切。
+
+函数的参数列表 arguments 是一个类数组对象，虽然它也有"下标"，但它并非真正的数组，所以也不能像数组一样，进行排序或者往集合里添加一个新的元素。在这种情况下，我们常常常常会借用 Array.prototype 对象上的方法。比如想往 arguments 中添加一个新的元素，通常会借用 Array.prototype.push :
+
+```javascript
+(function() {
+  Array.prototype.push.call(arguments, 3);
+  console.log(arguments); // 输出 [1 2 3]
+})(1, 2);
+```
