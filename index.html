@@ -287,6 +287,230 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://daziweb.github.io/2019/05/14/flutter/基础控件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dazi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dazi-World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/14/flutter/基础控件/" itemprop="url">Flutter 基础控件</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-14T14:59:15+08:00">
+                2019-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flutter/" itemprop="url" rel="index">
+                    <span itemprop="name">flutter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/14/flutter/基础控件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/14/flutter/基础控件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/05/14/flutter/基础控件/" class="leancloud_visitors" data-flag-title="Flutter 基础控件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基础控件"><a href="#基础控件" class="headerlink" title="基础控件"></a>基础控件</h2><h3 id="Tabbar-控件实现"><a href="#Tabbar-控件实现" class="headerlink" title="Tabbar 控件实现"></a>Tabbar 控件实现</h3><p>Tabbar 页面是常有需求，而在 Flutter 中：<strong>Scaffold、AppBar、Tabbar、TabbarView</strong> 是 Tabbar 页面的最简单实现。</p>
+<p>下面代码为一个 Tabbar Widget。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_GSYTabBarState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">GSYTabBarWidget</span>&gt; <span class="title">with</span> <span class="title">SingleTickerProviderStateMixin</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...省略非关键代码</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    <span class="comment">// 初始化时创建控制器</span></span><br><span class="line">    <span class="comment">// 通过 with SingleTickerProviderStateMixin 实现动画效果</span></span><br><span class="line">    _tabController = <span class="keyword">new</span> TabController(vsync: <span class="keyword">this</span>, length: _tabItems.length);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    _tabController.dispose();</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 底部 Tabbar 模式</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Scaffold(</span><br><span class="line">      <span class="comment">// 设置侧边滑出 drawer 不需要可以不设置</span></span><br><span class="line">      drawer: _drawer,</span><br><span class="line">      <span class="comment">// 设置悬浮按键 不需要可以不设置</span></span><br><span class="line">      floatingActionButton: _floatingActionButton,</span><br><span class="line">      <span class="comment">// 标题栏</span></span><br><span class="line">      appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">        backgroundColor: _backgroundColor,</span><br><span class="line">        title: _title,</span><br><span class="line">      ),</span><br><span class="line">      <span class="comment">// 页面主体 PageView 用于承载 Tab 对应的页面</span></span><br><span class="line">      body: <span class="keyword">new</span> PageView(</span><br><span class="line">        <span class="comment">// 必须有的控制器 与 tabBar 的控制器同步</span></span><br><span class="line">        controller: _pageController,</span><br><span class="line">        <span class="comment">// 每一个 tab 对应的页面主体 是一个 List&lt;Widget&gt;</span></span><br><span class="line">        children: _tabViews,</span><br><span class="line">        onPageChanged: (index) &#123;</span><br><span class="line">          <span class="comment">// 页面触摸作用滑动回调 用于同步 tab 选中状态</span></span><br><span class="line">          _tabController.animateTo(index);</span><br><span class="line">        &#125;,</span><br><span class="line">      ),</span><br><span class="line">      <span class="comment">// 底部导航栏 也就是 tab 栏</span></span><br><span class="line">      bottomNavigationBar: <span class="keyword">new</span> Material(</span><br><span class="line">        color: _backgroundColor,</span><br><span class="line">        <span class="comment">// tabbar 控件</span></span><br><span class="line">        child: <span class="keyword">new</span> TabBar(</span><br><span class="line">          <span class="comment">// 必须有的控制器 与 pageView 的控制器同步</span></span><br><span class="line">          controller: _tabController,</span><br><span class="line">          <span class="comment">// 每一个 tab item 是一个 List&lt;Widget&gt;</span></span><br><span class="line">          tabs: _tabItems,</span><br><span class="line">          <span class="comment">// tab 底部选中条颜色</span></span><br><span class="line">          indicatorColor: _indicatorColor,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上代码所示，这是一个 <em>底部 TabBar</em> 的页面效果。TabBar 和 PageView 之间通过 <code>_pageController</code> 和 <code>_tabController</code> 实现 Tab 和页面的同步，通过 <code>SingleTickerProviderStateMixin</code> 实现 Tab 的动画切换效果：</p>
+<ul>
+<li><p>手动左右滑动 <code>PageView</code> 时，通过 <code>onPageChanged</code> 回调使用 <code>_tabController.animateTo(index);</code> 同步 TabBar 状态。</p>
+</li>
+<li><p><code>_tabItems</code> 中，监听每个 TabBarItem 的点击，通过 <code>_pageController</code> 实现 PageView 的状态同步。</p>
+</li>
+</ul>
+<p>而上面代码还缺少了 TabBarItem 的点击，因为这块被放到了外部实现。当然你也可以直接在内部封装好控件，直接传递配置数据显示，这个可以根据个人需要封装。</p>
+<p>外部调用代码如下：每个 Tabbar 点击时，通过 <code>pageController.jumpTo</code> 跳转页面，每个页面需要跳转坐标为：<strong>当前屏幕大小乘以索引 index</strong>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_TabBarBottomPageWidgetState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">TabBarBottomPageWidget</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> PageController pageController = <span class="keyword">new</span> PageController();</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">List</span>&lt;<span class="built_in">String</span>&gt; tab = [<span class="string">'动态'</span>, <span class="string">'趋势'</span>, <span class="string">'我的'</span>];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 渲染底部Tab</span></span><br><span class="line">  _renderTab() &#123;</span><br><span class="line">    <span class="built_in">List</span>&lt;Widget&gt; list = <span class="keyword">new</span> <span class="built_in">List</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; tab.length; i++) &#123;</span><br><span class="line">      list.add(<span class="keyword">new</span> FlatButton(onPressed: () &#123;</span><br><span class="line">        <span class="comment">// 每个 Tabbar 点击时，通过jumpTo 跳转页面</span></span><br><span class="line">        <span class="comment">// 每个页面需要跳转坐标为：当前屏幕大小 * 索引index。</span></span><br><span class="line">        topPageControl.jumpTo(MediaQuery.of(context).size.width * i);</span><br><span class="line">      &#125;, child: <span class="keyword">new</span> Text(</span><br><span class="line">        tab[i],</span><br><span class="line">        maxLines: <span class="number">1</span>,</span><br><span class="line">      )));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 渲染Tab 对应页面</span></span><br><span class="line">  _renderPage() &#123;</span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">      <span class="keyword">new</span> TabBarPageFirst(),</span><br><span class="line">      <span class="keyword">new</span> TabBarPageSecond(),</span><br><span class="line">      <span class="keyword">new</span> TabBarPageThree(),</span><br><span class="line">    ];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 带 Scaffold 的 Tabbar 页面</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> GSYTabBarWidget(</span><br><span class="line">      type: GSYTabBarWidget.BOTTOM_TAB,</span><br><span class="line">      <span class="comment">// 渲染tab</span></span><br><span class="line">      tabItems: _renderTab(),</span><br><span class="line">      <span class="comment">// 渲染页面</span></span><br><span class="line">      tabViews: _renderPage(),</span><br><span class="line">      topPageControl: pageController,</span><br><span class="line">      backgroundColor: Colors.black45,</span><br><span class="line">      indicatorColor: Colors.white,</span><br><span class="line">      title: <span class="keyword">new</span> Text(<span class="string">"Flutter Demo"</span>));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果到此结束，你会发现页面点击切换时，<code>StatefulWidget</code> 的子页面每次都会重新调用 <code>initState</code>。这肯定不是我们想要的，所以这时你就需要 <code>AutomaticKeepAliveClientMixin</code>。</p>
+<p>每个 Tab 对应的 <code>StatefulWidget</code> 的 State ，需要通过 <code>with AutomaticKeepAliveClientMixin</code>，然后重写 <code>@override bool get wantKeepAlive =&gt; true;</code>，就可以实不重新构建的效果。</p>
+<p>既然底部 Tab 页面都实现了，干脆顶部 tab 页面也一起完成。如下代码，和底部 Tab 页的区别在于：</p>
+<ul>
+<li>底部 tab 是放在了 <code>Scaffold</code> 的 <code>bottomNavigationBar</code> 中。</li>
+<li>顶部 tab 是放在 <code>AppBar</code> 的 <code>bottom</code> 中，也就是标题栏之下。</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Scaffold(</span><br><span class="line">  <span class="comment">// 设置侧边滑出 drawer，不需要可以不设置</span></span><br><span class="line">  drawer: _drawer,</span><br><span class="line">  <span class="comment">// 设置悬浮按键，不需要可以不设置</span></span><br><span class="line">  floatingActionButton: _floatingActionButton,</span><br><span class="line">  <span class="comment">// 标题栏</span></span><br><span class="line">  appBar: <span class="keyword">new</span> AppBar(</span><br><span class="line">    backgroundColor: _backgroundColor,</span><br><span class="line">    title: _title,</span><br><span class="line">    <span class="comment">// tabBar控件</span></span><br><span class="line">    bottom: <span class="keyword">new</span> TabBar(</span><br><span class="line">      <span class="comment">// 顶部时，tabBar为可以滑动的模式</span></span><br><span class="line">      isScrollable: <span class="keyword">true</span>,</span><br><span class="line">      <span class="comment">// 必须有的控制器，与pageView的控制器同步</span></span><br><span class="line">      controller: _tabController,</span><br><span class="line">      <span class="comment">// 每一个tab item，是一个List&lt;Widget&gt;</span></span><br><span class="line">      tabs: _tabItems,</span><br><span class="line">      <span class="comment">// tab底部选中条颜色</span></span><br><span class="line">      indicatorColor: _indicatorColor,</span><br><span class="line">    ),</span><br><span class="line">  ),</span><br><span class="line">  <span class="comment">// 页面主体，PageView，用于承载Tab对应的页面</span></span><br><span class="line">  body: <span class="keyword">new</span> PageView(</span><br><span class="line">    <span class="comment">// 必须有的控制器，与tabBar的控制器同步</span></span><br><span class="line">    controller: _pageController,</span><br><span class="line">    <span class="comment">// 每一个 tab 对应的页面主体，是一个List&lt;Widget&gt;</span></span><br><span class="line">    children: _tabViews,</span><br><span class="line">    <span class="comment">// 页面触摸作用滑动回调，用于同步tab选中状态</span></span><br><span class="line">    onPageChanged: (index) &#123;</span><br><span class="line">      _tabController.animateTo(index);</span><br><span class="line">    &#125;,</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>在 TabBar 页面中，一般还会出现：<strong>父页面需要控制 PageView 中子页的需求</strong>。这时候就需要用到 <code>GlobalKey</code> 了。比如 <code>GlobalKey&lt;PageOneState&gt; stateOne = new GlobalKey&lt;PageOneState&gt;();</code>，通过 <code>globalKey.currentState</code> 对象，你就可以调用到 <code>PageOneState</code> 中的公开方法。这里需要注意 <code>GlobalKey</code> 需要全局唯一，一般可以在 <code>build</code> 方法中创建。</p>
+<h3 id="上下刷新列表"><a href="#上下刷新列表" class="headerlink" title="上下刷新列表"></a>上下刷新列表</h3><p>毫无争议，必备控件。Flutter 中 为我们提供了 <code>RefreshIndicator</code> 作为内置下拉刷新控件；同时我们通过给 <code>ListView</code> 添加 <code>ScrollController</code> 做滑动监听，在最后增加一个 Item， 作为上滑加载更多的 Loading 显示。</p>
+<p>如下代码所示，通过 <code>RefreshIndicator</code> 控件可以简单完成下拉刷新工作。这里需要注意一点是：<strong>可以利用 <code>GlobalKey&lt;RefreshIndicatorState&gt;</code> 对外提供 <code>RefreshIndicator</code> 的 <code>RefreshIndicatorState</code>，这样外部就 可以通过 <code>GlobalKey</code> 调用 <code>globalKey.currentState.show();</code>，主动显示刷新状态并触发 <code>onRefresh</code></strong> 。</p>
+<p>上拉加载更多在代码中是通过 <code>_getListCount()</code> 方法，在原本的数据基础上，增加实际需要渲染的 item 数量给 ListView 实现的，最后通过 <code>ScrollController</code> 监听到底部，触发 <code>onLoadMore</code>。</p>
+<p>如下代码所示，通过 <code>_getListCount()</code> 方法，还可以配置空页面，头部等常用效果。其实就是<strong>在内部通过改变实际 item 数量与渲染 Item，以实现更多配置效果</strong>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_GSYPullLoadWidgetState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">GSYPullLoadWidget</span>&gt; </span>&#123;</span><br><span class="line">  <span class="comment">// ···</span></span><br><span class="line">  <span class="keyword">final</span> ScrollController _scrollController = <span class="keyword">new</span> ScrollController();</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="comment">// 增加滑动监听</span></span><br><span class="line">    _scrollController.addListener(() &#123;</span><br><span class="line">      <span class="comment">// 判断当前滑动位置是不是到达底部，触发加载更多回调</span></span><br><span class="line">      <span class="keyword">if</span> (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.onLoadMore != <span class="keyword">null</span> &amp;&amp; <span class="keyword">this</span>.control.needLoadMore) &#123;</span><br><span class="line">          <span class="keyword">this</span>.onLoadMore();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 根据配置状态返回实际列表数量</span></span><br><span class="line">  <span class="comment">// 实际上这里可以根据你的需要做更多的处理</span></span><br><span class="line">  <span class="comment">// 比如多个头部，是否需要空页面，是否需要显示加载更多。</span></span><br><span class="line">  _getListCount() &#123;</span><br><span class="line">    <span class="comment">// 是否需要头部</span></span><br><span class="line">    <span class="keyword">if</span> (control.needHeader) &#123;</span><br><span class="line">      <span class="comment">// 如果需要头部，用Item 0 的 Widget 作为ListView的头部</span></span><br><span class="line">      <span class="comment">// 列表数量大于0时，因为头部和底部加载更多选项，需要对列表数据总数+2</span></span><br><span class="line">      <span class="keyword">return</span> (control.dataList.length &gt; <span class="number">0</span>) ? control.dataList.length + <span class="number">2</span> : control.dataList.length + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 如果不需要头部，在没有数据时，固定返回数量1用于空页面呈现</span></span><br><span class="line">      <span class="keyword">if</span> (control.dataList.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 如果有数据,因为不加载更多选项，需要对列表数据总数+1</span></span><br><span class="line">      <span class="keyword">return</span> (control.dataList.length &gt; <span class="number">0</span>) ? control.dataList.length + <span class="number">1</span> : control.dataList.length;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 根据配置状态返回实际列表渲染Item</span></span><br><span class="line">  _getItem(<span class="built_in">int</span> index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!control.needHeader &amp;&amp; index == control.dataList.length &amp;&amp; control.dataList.length != <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果不需要头部，并且数据不为0，当index等于数据长度时，渲染加载更多Item（因为index是从0开始）</span></span><br><span class="line">      <span class="keyword">return</span> _buildProgressIndicator();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (control.needHeader &amp;&amp; index == _getListCount() - <span class="number">1</span> &amp;&amp; control.dataList.length != <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果需要头部，并且数据不为0，当index等于实际渲染长度 - 1时，渲染加载更多Item（因为index是从0开始）</span></span><br><span class="line">      <span class="keyword">return</span> _buildProgressIndicator();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!control.needHeader &amp;&amp; control.dataList.length == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果不需要头部，并且数据为0，渲染空页面</span></span><br><span class="line">      <span class="keyword">return</span> _buildEmpty();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 回调外部正常渲染Item，如果这里有需要，可以直接返回相对位置的index</span></span><br><span class="line">      <span class="keyword">return</span> itemBuilder(context, index);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RefreshIndicator(</span><br><span class="line">      <span class="comment">// GlobalKey，用户外部获取RefreshIndicator的State，做显示刷新</span></span><br><span class="line">      key: refreshKey,</span><br><span class="line">      <span class="comment">// 下拉刷新触发，返回的是一个Future</span></span><br><span class="line">      onRefresh: onRefresh,</span><br><span class="line">      child: <span class="keyword">new</span> ListView.builder(</span><br><span class="line">        <span class="comment">// 保持ListView任何情况都能滚动，解决在RefreshIndicator的兼容问题。</span></span><br><span class="line">        physics: <span class="keyword">const</span> AlwaysScrollableScrollPhysics(),</span><br><span class="line">        <span class="comment">// 根据状态返回子孔健</span></span><br><span class="line">        itemBuilder: (context, index) &#123;</span><br><span class="line">          <span class="keyword">return</span> _getItem(index);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 根据状态返回数量</span></span><br><span class="line">        itemCount: _getListCount(),</span><br><span class="line">        <span class="comment">// 滑动监听</span></span><br><span class="line">        controller: _scrollController,</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 空页面</span></span><br><span class="line">  Widget _buildEmpty() &#123;</span><br><span class="line">    <span class="comment">// ···</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 上拉加载更多</span></span><br><span class="line">  Widget _buildProgressIndicator() &#123;</span><br><span class="line">    <span class="comment">// ···</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Loading"><a href="#Loading" class="headerlink" title="Loading"></a>Loading</h3><h3 id="矢量图标库"><a href="#矢量图标库" class="headerlink" title="矢量图标库"></a>矢量图标库</h3><h3 id="路由跳转"><a href="#路由跳转" class="headerlink" title="路由跳转"></a>路由跳转</h3><h2 id="数据模块"><a href="#数据模块" class="headerlink" title="数据模块"></a>数据模块</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://daziweb.github.io/2019/05/13/flutter/dart、flutter基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -306,7 +530,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/13/flutter/dart、flutter基础/" itemprop="url">flutter基础</a></h2>
+                <a class="post-title-link" href="/2019/05/13/flutter/dart、flutter基础/" itemprop="url">Flutter 基础</a></h2>
         
 
         <div class="post-meta">
@@ -368,7 +592,7 @@
 
           
           
-             <span id="/2019/05/13/flutter/dart、flutter基础/" class="leancloud_visitors" data-flag-title="flutter基础">
+             <span id="/2019/05/13/flutter/dart、flutter基础/" class="leancloud_visitors" data-flag-title="Flutter 基础">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2151,220 +2375,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://daziweb.github.io/2019/03/04/webpack/webpack配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dazi">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dazi-World">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/04/webpack/webpack配置/" itemprop="url">webpack 配置</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T10:40:11+08:00">
-                2019-03-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/03/04/webpack/webpack配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/04/webpack/webpack配置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/03/04/webpack/webpack配置/" class="leancloud_visitors" data-flag-title="webpack 配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  547
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="webpack-配置学习"><a href="#webpack-配置学习" class="headerlink" title="webpack 配置学习"></a>webpack 配置学习</h1><h2 id="一-入口-entry"><a href="#一-入口-entry" class="headerlink" title="一. 入口[entry]"></a>一. 入口[entry]</h2><ol>
-<li>介绍<ul>
-<li>指示 webpack 应该使用哪个模块，来作为构建内部<em>依赖图</em>的开始</li>
-<li>每个依赖项都被处理，最后输出到 <em>bundles</em> 文件中</li>
-<li>入口可指定一个或多个，默认值为 <code>./src</code></li>
-</ul>
-</li>
-<li>配置<ul>
-<li>单个入口</li>
-<li>多个入口
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/04/webpack/webpack配置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </li></ul></li></ol></div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2410,7 +2427,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2490,7 +2507,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">28.2k</span>
+    <span title="Site words total count">30.2k</span>
   
 </div>
 
@@ -2504,7 +2521,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共28.2k字</span>
+  <span class="post-count">博客全站共30.2k字</span>
 </div>
         
 
