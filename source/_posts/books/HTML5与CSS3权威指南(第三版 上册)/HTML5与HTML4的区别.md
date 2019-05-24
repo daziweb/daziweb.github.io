@@ -364,3 +364,50 @@ dialog 元素表示对话框。
 3 只有部分浏览器支持的元素
 
 marquee 元素只被 Internet Explorer 支持。
+
+### 新增的属性
+
+1 表单相关的属性
+
+- 可以对 input(type=text)、select、textarea 与 button 元素指定 autofocus 属性。它以指定属性的方式让元素在画面打开时自动获得焦点。
+- 可以对 input 元素(type=text)与 textarea 元素指定 placeholder 属性，声明它属于哪个表单，然后将其放置在页面上任何位置，而不是表单之内。
+- 可以对 input 元素(type=text)与 textarea 元素指定 required 属性。该属性表示在用户提交的时候进行检查，检查该元素内一定要有输入内容。
+- 为 input 元素增加了几个新的属性：autocomplete、min、max、multiple、pattern 与 step。multiple 属性允许在上传文件时一次上传多个文件。
+- 为 input 元素、button 元素、form 元素增加了 novalidate 属性，该属性可以取消提交时进行的有关检查，表单可以被无条件提交。
+- 可以在标签(label 元素)内部放置一个表单元素，并且通过该标签的 control 属性访问该表单元素。
+- 对复选框(checkbox 元素)添加 indeterminate 属性，以说明复选框处于'尚未明确是否选取'状态。
+- 对 textarea 元素新增用于限定可输入文字个数的 maxlength 属性与用于指定表单提交时是否在文字换行处添加换行符的 wrap 属性。
+
+2 链接相关的属性
+
+- 为 a 元素增加了 media 属性、download 属性以及 ping 属性，其中 media 属性规定目标 URL 是为什么类型的媒介/设备进行优化的，download 属性用于让用户下载目标链接所指向的资源，而不是直接打开该目标链接，这些属性均只能在 href 属性存在时使用。
+
+3 其他属性
+
+- 为 meta 元素增加 charset 属性，因为这个属性已经得到广泛支持，而且为文档的字符编码的指定提供了一种比较良好的方式。
+- 为 style 元素增加 scoped 属性，用来规定样式的作用范围，譬如只对页面上某个树起作用。
+- 为 script 元素增加 async 属性，它定义脚本是否异步执行。
+
+### 全局属性
+
+1 hidden 属性
+
+在 HTML5 中，所有的元素都允许使用一个 hidden 属性。该属性类似于 input 元素中的 hidden 属性，功能是通知浏览器不渲染该元素，使该元素处于不可见状态。但是元素中的内容还是被浏览器创建的，也就是说页面装载后允许使用 JavaScript 脚本将属性取消，取消后该元素变为可见状态，同时元素中的内容也即时显示出来。hidden 属性是一个布尔值的属性，当设为 true 时，元素处于不可见状态；当设为 false 时，元素处于可见状态。
+
+### 新增的事件
+
+|        元素或对象        |     事件     |                                                                                    触发时机                                                                                    |                         代码示例                          |
+| :----------------------: | :----------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------: |
+|        body 元素         | beforeprint  |                                                                              即将开始打印之前触发                                                                              |       `<body onbeforeprint="alert('即将打印');" >`        |
+|        body 元素         |  afterprint  |                                                                                 打印完毕时触发                                                                                 |        `<body onafterprint="alert('打印完毕');" >`        |
+|        body 元素         |    resize    |                                                                          浏览器窗口大小发生改变时触发                                                                          |      `<body onresize="alert('用户调整页面尺寸'); ">`      |
+|        body 元素         |    error     |                                                                               页面加载出错时触发                                                                               |        `<body onerror="alert('页面加载出错');" >`         |
+|        body 元素         |   offline    |                                                                             页面变为离线状态时触发                                                                             |     `<body onoffline="alert('页面变为离线状态');" >`      |
+|        body 元素         |    online    |                                                                             页面变为在线状态时触发                                                                             |      `<body ononline="alert('页面变为在线状态');" >`      |
+|        body 元素         |   pageshow   | 页面加载时触发，类似于 load 事件，区别在于 load 事件在页面第一次加载时触发，而 pageshow 事件在每一次加载时触发，即从网页缓存中读取页面时只触发 pageshow 事件，不触发 load 事件 |        `<body onpageshow="alert('页面被加载');" >`        |
+|        body 元素         | beforeunload |                               当前页面被关闭时触发，该事件通知浏览器显示一个用于询问用户是否确定离开本页面的确认窗口，可以设置该窗口中的提示文字                               |  `<body onbeforeunload="return '是否确定离开本页面?';">`  |
+|        body 元素         |  hashchange  |                                                          当页面 URL 地址字符串中的哈希部分(#后面的部分)发生改变时触发                                                          | `<body onhashchange="alert('URL中hash部分发生改变');" >`  |
+|         任何元素         |  mousewheel  |                                                                 当用户鼠标指针悬停在元素上并滚动鼠标滚轮时触发                                                                 |    `<body onmousewheel="alert('用户滚动鼠标滚轮');">`     |
+|       任何容器元素       |    scroll    |                                                                            当元素滚动条被滚动时触发                                                                            |         `<body onscroll="alert('元素被滚动');" >`         |
+| input 元素 textarea 元素 |    input     |                     当用户修改文本框中内容时触发，input 事件与 change 事件的区别为 input 事件在元素尚未失去焦点时已触发，change 事件只在元素失去焦点时触发                     | `<input type="text" oninput="alert('元素内容被修改');" >` |
+|        form 元素         |    reset     |                                 当用户按下表单元素中的 type 类型为 reset 的 input 元素或 JavaScript 脚本代码中执行表单对象的 reset 方法时触发                                  |    `<body id="form1" onreset="alert('表单被重置');" >`    |
