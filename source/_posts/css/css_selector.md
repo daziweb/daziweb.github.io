@@ -11,7 +11,7 @@ comments: true
 
 选择器(selector)和声明块(declaration block)。声明块由一个或多个声明(declaration)组成，每个声明则是一个属性-值对(property-value)。
 
-![css 规则结构](https://ws1.sinaimg.cn/large/b3ad6cffly1g3o1fjr6nhj20hj01yaa4.jpg)
+![css 规则结构](http://ww1.sinaimg.cn/large/b3ad6cffly1g3o3b1u6i5j20hj01yaa4.jpg)
 
 ## 元素选择器
 
